@@ -1,0 +1,4 @@
+rootProject.name = "burger-builder"
+
+include("shared")
+include("server")
