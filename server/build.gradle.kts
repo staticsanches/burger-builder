@@ -38,6 +38,13 @@ kotlin {
 
 dependencies {
 	implementation(project(":shared"))
+
+	implementation("io.ktor:ktor-auth:${Versions.ktor}")
+	implementation("io.ktor:ktor-auth-jwt:${Versions.ktor}")
+	implementation("io.ktor:ktor-serialization:${Versions.ktor}")
+	implementation("io.ktor:ktor-server:${Versions.ktor}")
+	implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
+	implementation("ch.qos.logback:logback-classic:${Versions.logback}")
 }
 
 application {
