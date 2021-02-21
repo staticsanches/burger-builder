@@ -1,0 +1,4 @@
+local-database/*
+!local-database/docker-compose.yml
+!local-database/README.md
+!local-database/servers.json

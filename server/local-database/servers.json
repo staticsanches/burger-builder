@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "Postgres": {
+      "Name": "Burger Builder",
+      "Port": 5432,
+      "Group": "Servers",
+      "SSLMode": "prefer",
+      "Username": "burger-builder",
+      "Host": "burger-builder-postgres",
+      "MaintenanceDB": "postgres"
+    }
+  }
+}

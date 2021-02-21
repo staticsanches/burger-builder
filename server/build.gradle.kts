@@ -59,6 +59,23 @@ tasks {
 		}
 	}
 
+	val startLocalDatabase by registering(task.DockerComposeUp::class) {
+		baseDirectory = "local-database"
+	}
+
+	register("stopLocalDatabase", task.DockerComposeDown::class) {
+		baseDirectory = "local-database"
+	}
+
+	register("cleanLocalDatabase", task.db.CleanDatabase::class) {
+		dependsOn(startLocalDatabase)
+
+		driver = "org.postgresql.Driver"
+		url = "jdbc:postgresql://localhost:54321/burger-builder"
+		user = "burger-builder"
+		password = "burger-builder"
+	}
+
 	test {
 		useJUnitPlatform()
 	}

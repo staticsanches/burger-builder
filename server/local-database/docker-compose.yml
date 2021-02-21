@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  burger-builder-postgres:
+    image: postgres:9.6
+    ports:
+      - 54321:5432
+    environment:
+      - POSTGRES_USER=burger-builder
+      - POSTGRES_PASSWORD=burger-builder
+      - POSTGRES_DB=burger-builder
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+  burger-builder-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@burger-builder.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - 5050:80
+    volumes:
+       - ./pgadmin-data:/var/lib/pgadmin
+       - ./servers.json:/pgadmin4/servers.json
+    depends_on:
+      - burger-builder-postgres
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
