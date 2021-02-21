@@ -1,4 +1,4 @@
-local-database/*
-!local-database/docker-compose.yml
-!local-database/README.md
-!local-database/servers.json
+local-environment/*
+!local-environment/docker-compose.yml
+!local-environment/README.md
+!local-environment/servers.json

@@ -66,16 +66,16 @@ tasks {
 		}
 	}
 
-	val startLocalDatabase by registering(task.DockerComposeUp::class) {
-		baseDirectory = "local-database"
+	val startLocalEnvironment by registering(task.DockerComposeUp::class) {
+		baseDirectory = "local-environment"
 	}
 
-	register("stopLocalDatabase", task.DockerComposeDown::class) {
-		baseDirectory = "local-database"
+	register("stopLocalEnvironment", task.DockerComposeDown::class) {
+		baseDirectory = "local-environment"
 	}
 
 	register("cleanLocalDatabase", task.db.CleanDatabase::class) {
-		dependsOn(startLocalDatabase)
+		dependsOn(startLocalEnvironment)
 
 		driver = "org.postgresql.Driver"
 		url = "jdbc:postgresql://localhost:54321/burger-builder"

@@ -19,7 +19,7 @@
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
     <DebugAllEnabled>false</DebugAllEnabled>
     <method v="2">
-      <option name="Gradle.BeforeRunTask" enabled="true" tasks="startLocalDatabase" externalProjectPath="$PROJECT_DIR$/server" vmOptions="" scriptParameters="" />
+      <option name="Gradle.BeforeRunTask" enabled="true" tasks="startLocalEnvironment" externalProjectPath="$PROJECT_DIR$/server" vmOptions="" scriptParameters="" />
     </method>
   </configuration>
 </component>
