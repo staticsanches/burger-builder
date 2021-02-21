@@ -1,0 +1,7 @@
+# Enviroment variables for development
+.env.development
+
+.eslintcache
+
+!src/**
+!public/**

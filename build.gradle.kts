@@ -17,7 +17,7 @@ buildscript {
 
 allprojects {
 
-	group = "com.staticsanches.burger-builder"
+	group = "com.staticsanches.burger.builder"
 	version = "0.0.1-SNAPSHOT"
 
 	repositories {
