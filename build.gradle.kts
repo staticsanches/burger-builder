@@ -1,3 +1,7 @@
+plugins {
+	idea
+}
+
 buildscript {
 
 	repositories {
@@ -9,6 +13,7 @@ buildscript {
 	}
 
 	dependencies {
+		classpath("com.android.tools.build:gradle:4.0.2")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
 		classpath("com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:${Versions.buildKonfig}")
 	}
@@ -39,4 +44,10 @@ allprojects {
 
 gradle.buildFinished {
 	task.closeSsh()
+}
+
+idea {
+	module {
+		excludeDirs = excludeDirs + file(".run") + file("build") + file("gradle")
+	}
 }

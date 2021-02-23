@@ -6,4 +6,5 @@ include(":server")
 
 include(":client")
 include(":client:commons")
+include(":client:android")
 include(":client:react")
