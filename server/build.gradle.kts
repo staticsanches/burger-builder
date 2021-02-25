@@ -15,11 +15,12 @@ kotlin {
 
 		attributes {
 			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
-			attribute(Attribute.of("com.staticsanches.android", Boolean::class.javaObjectType), false)
+			attribute(androidAttribute, false)
 		}
 
 		compilations.all {
 			kotlinOptions {
+				useIR = true
 				jvmTarget = "1.8"
 				freeCompilerArgs = freeCompilerArgs + listOf(
 					"-XXLanguage:+InlineClasses",

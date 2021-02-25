@@ -15,6 +15,8 @@ dependencies {
 	implementation("org.jetbrains:kotlin-react-dom:${Versions.kotlinReact}")
 	implementation("org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}")
 	implementation("org.jetbrains:kotlin-styled:${Versions.kotlinStyled}")
+	implementation("org.jetbrains:kotlin-redux:${Versions.kotlinRedux}")
+	implementation("org.jetbrains:kotlin-react-redux:${Versions.kotlinReactRedux}")
 
 	implementation(npm("axios", "0.21.1"))
 }

@@ -34,7 +34,7 @@ kotlin {
 
 	target {
 		attributes {
-			attribute(Attribute.of("com.staticsanches.android", Boolean::class.javaObjectType), true)
+			attribute(androidAttribute, true)
 			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 6)
 			attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 		}

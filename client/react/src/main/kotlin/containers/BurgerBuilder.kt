@@ -1,113 +1,105 @@
 package containers
 
-import axios.axiosOrder
+import com.staticsanches.burger.builder.react.hoc.plus
+import com.staticsanches.burger.builder.react.hoc.rConnect
 import com.staticsanches.burger.builder.react.hoc.withErrorBoundary
-import com.staticsanches.burger.builder.react.utils.hooks.useAsyncError
-import com.staticsanches.burger.builder.shared.js.json.convertFromJson
+import com.staticsanches.burger.builder.react.hoc.wrappedBy
+import com.staticsanches.burger.builder.react.store.slices.BurgerSlice.AddIngredient
+import com.staticsanches.burger.builder.react.store.slices.BurgerSlice.RemoveIngredient
 import components.burger.*
 import components.ui.modal
-import components.ui.spinner
+import react.RBuilder
+import react.RClass
+import react.RComponent
 import react.RProps
+import react.RState
 import react.dom.p
 import react.router.dom.RouteResultProps
-import react.useEffect
-import react.useState
 import utils.EventHandler
-import utils.FunctionalComponent
+import utils.setState
 
-interface BurgerBuilderProps : RouteResultProps<RProps>
-
-val burgerBuilder by FunctionalComponent<BurgerBuilderProps>(
-	withErrorBoundary { p { +"Ingredients can't be loaded!" } }
-) { props ->
-	val (ingredients, setIngredients) = useState<BurgerIngredients?>(null)
-	val (totalPrice, setTotalPrice) = useState(initialPrice)
-	val (purchasing, setPurchasing) = useState(false)
-	val throwError = useAsyncError()
-
-	useEffect(emptyList()) {
-		axiosOrder.get<Any>("/ingredients.json")
-			.then {
-				val newIngredients: BurgerIngredients = it.data.convertFromJson()
-				val newPrice = IngredientType.configurableValues
-					.fold(initialPrice) { acc, type ->
-						acc + newIngredients[type] * type.price
-					}
-				setIngredients(newIngredients)
-				setTotalPrice(newPrice)
-			}
-			.catch {
-				throwError(Error("Testing error"))
-			}
-	}
-
-	val removeIngredientHandler = remove@{ type: IngredientType ->
-		val oldCount = ingredients!![type]
-		if (oldCount == 0) {
-			return@remove // nothing to remove
+val burgerBuilder: RClass<RProps> =
+	BurgerBuilder::class wrappedBy rConnect<BurgerBuilderProps, RProps>(
+		{ state ->
+			ingredients = state.burgerState.ingredients
+			price = state.burgerState.price
+		},
+		{ dispatch ->
+			onIngredientAdded = { ingredientType -> dispatch(AddIngredient(ingredientType)) }
+			onIngredientRemoved = { ingredientType -> dispatch(RemoveIngredient(ingredientType)) }
 		}
-		setIngredients(ingredients.copy(type, oldCount - 1))
-		setTotalPrice(totalPrice - type.price)
-	}
-	val addIngredientHandler = { type: IngredientType ->
-		setIngredients(ingredients!!.copy(type, ingredients[type] + 1))
-		setTotalPrice(totalPrice + type.price)
-	}
-	val disabled = disabled@{ type: IngredientType ->
-		return@disabled ingredients!![type] == 0
-	}
-	val purchaseHandler: EventHandler = { setPurchasing(true) }
-	val purchaseCancelHandler: EventHandler = { setPurchasing(false) }
-	val purchaseContinueHandler: EventHandler = {
-		val queryParams = IngredientType.configurableValues
-			.joinToString("&") {
-				"${it.name}=${ingredients!![it]}"
-			} + "&price=$totalPrice"
-		props.history.push("/checkout?$queryParams")
+	) + withErrorBoundary {
+		p { +"Ingredients can't be loaded!" }
 	}
 
-	if (ingredients == null) {
-		spinner {}
-	} else {
+private interface BurgerBuilderProps : RouteResultProps<RProps> {
+
+	var ingredients: BurgerIngredients
+	var price: Double
+
+	var onIngredientAdded: (IngredientType) -> Unit
+	var onIngredientRemoved: (IngredientType) -> Unit
+
+}
+
+private interface BurgerBuilderState : RState {
+
+	var purchasing: Boolean
+
+}
+
+private class BurgerBuilder(initialProps: BurgerBuilderProps) :
+	RComponent<BurgerBuilderProps, BurgerBuilderState>(initialProps) {
+
+	override fun BurgerBuilderState.init(props: BurgerBuilderProps) {
+		purchasing = false
+	}
+
+	val disabled = { type: IngredientType -> props.ingredients[type] == 0 }
+
+	val purchaseHandler: EventHandler = {
+		setState { purchasing = true }
+	}
+
+	val purchaseCancelHandler: EventHandler = {
+		setState { purchasing = false }
+	}
+
+	val purchaseContinueHandler: EventHandler = {
+		props.history.push("/checkout")
+	}
+
+	override fun RBuilder.render() {
+		val price = props.price
+		val ingredients = props.ingredients
+
 		burger {
 			attrs.ingredients = ingredients
 		}
 		buildControls {
 			attrs {
-				price = totalPrice
+				this.price = price
 				purchasable = ingredients.total > 0
 				ordered = purchaseHandler
-				this.disabled = disabled
-				lessHandler = removeIngredientHandler
-				moreHandler = addIngredientHandler
+				disabled = this@BurgerBuilder.disabled
+				lessHandler = props.onIngredientRemoved
+				moreHandler = props.onIngredientAdded
 			}
 		}
-	}
-	modal {
-		attrs {
-			show = purchasing
-			modalClosed = purchaseCancelHandler
-		}
-		if (ingredients != null) {
+		modal {
+			attrs {
+				show = state.purchasing
+				modalClosed = purchaseCancelHandler
+			}
 			orderSummary {
 				attrs {
 					this.ingredients = ingredients
-					price = totalPrice
+					this.price = price
 					purchaseCancelled = purchaseCancelHandler
 					purchaseContinued = purchaseContinueHandler
 				}
 			}
 		}
 	}
+
 }
-
-private const val initialPrice = 4.0
-
-private val IngredientType.price: Double
-	get() = when (this) {
-		IngredientType.SALAD -> 0.5
-		IngredientType.BACON -> 0.7
-		IngredientType.CHEESE -> 0.4
-		IngredientType.MEAT -> 1.3
-		else -> error("Invalid ingredient: $label")
-	}

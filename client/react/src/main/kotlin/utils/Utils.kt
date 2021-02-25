@@ -20,9 +20,9 @@ fun <S : RState> RComponent<*, S>.setState(partialStateBuilder: S.() -> Unit) {
 	this.setState(partialState)
 }
 
-fun <P : RProps> RBuilder.route(
+fun RBuilder.route(
 	path: String,
-	component: RClass<P>,
+	component: RClass<RProps>,
 	exact: Boolean = false,
 	strict: Boolean = false
 ): ReactElement {
@@ -31,7 +31,7 @@ fun <P : RProps> RBuilder.route(
 			this.path = path
 			this.exact = exact
 			this.strict = strict
-			this.component = component.unsafeCast<RClass<RProps>>()
+			this.component = component
 		}
 	}
 }

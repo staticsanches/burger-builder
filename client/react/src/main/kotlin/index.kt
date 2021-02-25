@@ -1,3 +1,4 @@
+import com.staticsanches.burger.builder.react.store.store
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.body
@@ -6,10 +7,12 @@ import kotlinx.css.margin
 import kotlinx.css.padding
 import kotlinx.css.px
 import react.dom.render
+import react.redux.provider
 import react.router.dom.browserRouter
 import styled.injectGlobal
 
 fun main() {
+
 	injectGlobal {
 		body {
 			margin(0.px)
@@ -20,9 +23,12 @@ fun main() {
 
 	window.onload = {
 		render(document.getElementById("root")) {
-			browserRouter {
-				app {}
+			provider(store = store) {
+				browserRouter {
+					app {}
+				}
 			}
 		}
 	}
+
 }

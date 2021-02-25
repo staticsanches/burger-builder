@@ -3,6 +3,9 @@ package containers
 import axios.axiosOrder
 import com.staticsanches.burger.builder.react.components.ui.ButtonType
 import com.staticsanches.burger.builder.react.components.ui.button
+import com.staticsanches.burger.builder.react.hoc.rConnect
+import com.staticsanches.burger.builder.react.hoc.wrappedBy
+import com.staticsanches.burger.builder.react.store.AppState
 import components.burger.BurgerIngredients
 import components.ui.CustomInput
 import components.ui.CustomInputConfig
@@ -34,7 +37,6 @@ import react.RState
 import react.dom.form
 import react.dom.h4
 import react.key
-import react.rClass
 import react.router.dom.RouteResultProps
 import styled.css
 import styled.styledDiv
@@ -43,14 +45,19 @@ import utils.setState
 import utils.withExtendedRBuilder
 import kotlin.reflect.KMutableProperty1
 
-interface ContactDataProps : RouteResultProps<RProps> {
+
+val contactData: RClass<RProps> =
+	ContactData::class wrappedBy rConnect({ state: AppState ->
+		ingredients = state.burgerState.ingredients
+		price = state.burgerState.price
+	})
+
+private interface ContactDataProps : RouteResultProps<RProps> {
 
 	var ingredients: BurgerIngredients
 	var price: Number
 
 }
-
-val contactData: RClass<ContactDataProps> = ContactData::class.rClass
 
 private interface ContactDataState : RState {
 

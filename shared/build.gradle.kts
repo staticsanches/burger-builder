@@ -11,8 +11,6 @@ plugins {
 	idea
 }
 
-val androidAttribute = Attribute.of("com.staticsanches.android", Boolean::class.javaObjectType)
-
 kotlin {
 
 	targets {

@@ -1,8 +1,11 @@
 package com.staticsanches.burger.builder.react.hoc
 
 import com.staticsanches.burger.builder.react.utils.RClassDelegate
+import react.Component
 import react.RClass
 import react.RProps
+import react.rClass
+import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
 typealias HOC<P, R> = (RClass<P>) -> RClass<R>
@@ -39,3 +42,6 @@ infix fun <P : RProps, R : RProps> RClassDelegate<P>.wrappedBy(hoc: HOC<P, R>): 
 		}
 
 	}
+
+infix fun <P : RProps, R : RProps> KClass<out Component<P, *>>.wrappedBy(hoc: HOC<P, R>): RClass<R> =
+	hoc(this.rClass)
