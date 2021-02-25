@@ -1,4 +1,4 @@
-package utils
+package com.staticsanches.burger.builder.shared.json
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -19,6 +19,3 @@ inline fun <reified T> String.fromJson(): T =
 
 inline fun <reified T> T.toJson(): String =
 	DefaultJson.encodeToString(this)
-
-inline fun <reified T> Any.convertFromJson(): T =
-	JSON.stringify(this).fromJson()

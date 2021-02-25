@@ -1,6 +1,9 @@
-package components.ui
+package com.staticsanches.burger.builder.react.components.ui
 
-import hoc.defaultProps
+import com.staticsanches.burger.builder.react.hoc.defaultProps
+import com.staticsanches.burger.builder.react.hoc.wrappedBy
+import com.staticsanches.burger.builder.react.utils.EventHandler
+import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
 import kotlinx.css.Color
 import kotlinx.css.Cursor
 import kotlinx.css.FontWeight
@@ -21,8 +24,6 @@ import react.RProps
 import styled.StyleSheet
 import styled.css
 import styled.styledButton
-import utils.EventHandler
-import utils.FunctionalComponent
 
 enum class ButtonType {
 
@@ -32,15 +33,13 @@ enum class ButtonType {
 
 interface ButtonProps : RProps {
 
-	var buttonType: ButtonType?
-	var clicked: EventHandler
 	var disabled: Boolean
+	var buttonType: ButtonType
+	var clicked: EventHandler
 
 }
 
-val button by FunctionalComponent<ButtonProps>(
-	defaultProps { disabled = false }
-) { props ->
+val button by FunctionalComponentDelegate<ButtonProps> { props ->
 	styledButton {
 		css {
 			+ButtonStyles.button
@@ -56,6 +55,9 @@ val button by FunctionalComponent<ButtonProps>(
 
 		props.children()
 	}
+} wrappedBy defaultProps {
+	buttonType = ButtonType.SUCCESS
+	disabled = false
 }
 
 private object ButtonStyles : StyleSheet("ButtonStyles") {

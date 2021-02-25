@@ -48,6 +48,6 @@ gradle.buildFinished {
 
 idea {
 	module {
-		excludeDirs = excludeDirs + file(".run") + file("build") + file("gradle")
+		excludeDirs = excludeDirs + file("build") + file("gradle")
 	}
 }

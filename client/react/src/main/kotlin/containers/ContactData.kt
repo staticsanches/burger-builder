@@ -1,12 +1,12 @@
 package containers
 
 import axios.axiosOrder
+import com.staticsanches.burger.builder.react.components.ui.ButtonType
+import com.staticsanches.burger.builder.react.components.ui.button
 import components.burger.BurgerIngredients
-import components.ui.ButtonType
 import components.ui.CustomInput
 import components.ui.CustomInputConfig
 import components.ui.CustomSelect
-import components.ui.button
 import components.ui.spinner
 import kotlinext.js.js
 import kotlinx.css.BorderStyle

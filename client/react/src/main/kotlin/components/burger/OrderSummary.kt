@@ -1,7 +1,7 @@
 package components.burger
 
-import components.ui.ButtonType
-import components.ui.button
+import com.staticsanches.burger.builder.react.components.ui.ButtonType
+import com.staticsanches.burger.builder.react.components.ui.button
 import kotlinx.css.TextTransform
 import kotlinx.css.textTransform
 import react.RProps

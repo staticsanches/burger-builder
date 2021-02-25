@@ -1,9 +1,9 @@
 package components.order
 
+import com.staticsanches.burger.builder.react.components.ui.ButtonType
+import com.staticsanches.burger.builder.react.components.ui.button
 import components.burger.BurgerIngredients
 import components.burger.burger
-import components.ui.ButtonType
-import components.ui.button
 import kotlinx.css.LinearDimension
 import kotlinx.css.TextAlign
 import kotlinx.css.margin

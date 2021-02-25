@@ -11,7 +11,6 @@ import react.buildElement
 import react.router.dom.RouteComponent
 import react.router.dom.RouteProps
 import react.router.dom.RouteResultProps
-import react.router.dom.route
 
 fun Number.toFixed(digits: Int): String =
 	this.asDynamic().toFixed(digits) as String

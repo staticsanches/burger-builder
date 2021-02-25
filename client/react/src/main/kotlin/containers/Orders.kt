@@ -1,6 +1,7 @@
 package containers
 
 import axios.axiosOrder
+import com.staticsanches.burger.builder.shared.js.json.convertFromJson
 import components.burger.BurgerIngredients
 import components.order.order
 import components.ui.spinner
@@ -15,7 +16,6 @@ import react.RState
 import react.dom.div
 import react.key
 import react.rClass
-import utils.convertFromJson
 import utils.setState
 
 val orders: RClass<RProps> =

@@ -1,10 +1,12 @@
 package containers
 
 import axios.axiosOrder
+import com.staticsanches.burger.builder.react.hoc.withErrorBoundary
+import com.staticsanches.burger.builder.react.utils.hooks.useAsyncError
+import com.staticsanches.burger.builder.shared.js.json.convertFromJson
 import components.burger.*
 import components.ui.modal
 import components.ui.spinner
-import hoc.withErrorHandler
 import react.RProps
 import react.dom.p
 import react.router.dom.RouteResultProps
@@ -12,16 +14,16 @@ import react.useEffect
 import react.useState
 import utils.EventHandler
 import utils.FunctionalComponent
-import utils.convertFromJson
 
 interface BurgerBuilderProps : RouteResultProps<RProps>
 
-val burgerBuilder by FunctionalComponent<BurgerBuilderProps>(withErrorHandler(axiosOrder)) { props ->
+val burgerBuilder by FunctionalComponent<BurgerBuilderProps>(
+	withErrorBoundary { p { +"Ingredients can't be loaded!" } }
+) { props ->
 	val (ingredients, setIngredients) = useState<BurgerIngredients?>(null)
 	val (totalPrice, setTotalPrice) = useState(initialPrice)
 	val (purchasing, setPurchasing) = useState(false)
-	val (loading, setLoading) = useState(false)
-	val (error, setError) = useState(false)
+	val throwError = useAsyncError()
 
 	useEffect(emptyList()) {
 		axiosOrder.get<Any>("/ingredients.json")
@@ -35,7 +37,7 @@ val burgerBuilder by FunctionalComponent<BurgerBuilderProps>(withErrorHandler(ax
 				setTotalPrice(newPrice)
 			}
 			.catch {
-				setError(true)
+				throwError(Error("Testing error"))
 			}
 	}
 
@@ -65,11 +67,7 @@ val burgerBuilder by FunctionalComponent<BurgerBuilderProps>(withErrorHandler(ax
 	}
 
 	if (ingredients == null) {
-		if (error) {
-			p { +"Ingredients can't be loaded!" }
-		} else {
-			spinner {}
-		}
+		spinner {}
 	} else {
 		burger {
 			attrs.ingredients = ingredients
@@ -90,21 +88,13 @@ val burgerBuilder by FunctionalComponent<BurgerBuilderProps>(withErrorHandler(ax
 			show = purchasing
 			modalClosed = purchaseCancelHandler
 		}
-		when {
-			ingredients == null -> {
-				// Does nothing
-			}
-			loading -> {
-				spinner {}
-			}
-			else -> {
-				orderSummary {
-					attrs {
-						this.ingredients = ingredients
-						price = totalPrice
-						purchaseCancelled = purchaseCancelHandler
-						purchaseContinued = purchaseContinueHandler
-					}
+		if (ingredients != null) {
+			orderSummary {
+				attrs {
+					this.ingredients = ingredients
+					price = totalPrice
+					purchaseCancelled = purchaseCancelHandler
+					purchaseContinued = purchaseContinueHandler
 				}
 			}
 		}

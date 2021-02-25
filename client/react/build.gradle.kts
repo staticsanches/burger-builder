@@ -6,6 +6,7 @@ plugins {
 }
 
 dependencies {
+	implementation(project(":shared"))
 	implementation(project(":client:commons"))
 
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
