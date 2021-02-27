@@ -1,14 +1,14 @@
 package com.staticsanches.burger.builder.react.hoc
 
+import com.staticsanches.burger.builder.react.components.ui.modal
 import com.staticsanches.burger.builder.react.utils.EventHandler
-import components.ui.modal
 import react.RBuilder
 import react.RClass
 import react.RComponent
 import react.RErrorInfo
 import react.RProps
 import react.RState
-import utils.setState
+import react.setState
 
 fun <P : RProps> withErrorBoundary(fallback: RBuilder.() -> Unit): HOC<P, P> {
 	val withErrorBoundary by FactoryHOCDelegate<P> { component, initialProps ->
@@ -62,7 +62,7 @@ private abstract class WithErrorBoundary<P : RProps>(initialProps: P) :
 	}
 
 	override fun componentDidCatch(error: Throwable, info: RErrorInfo) {
-		this.setState {
+		setState {
 			errorOccurred = true
 			showModal = true
 			this.error = error
@@ -71,7 +71,7 @@ private abstract class WithErrorBoundary<P : RProps>(initialProps: P) :
 	}
 
 	val errorConfirmedHandler: EventHandler = {
-		this.setState { showModal = false }
+		setState { showModal = false }
 	}
 
 	abstract fun RBuilder.renderFallback(error: Throwable, info: RErrorInfo)

@@ -1,6 +1,7 @@
 package com.staticsanches.burger.builder.react.utils
 
 import com.staticsanches.burger.builder.react.store.AppState
+import kotlinext.js.jsObject
 import redux.RAction
 import redux.WrapperAction
 import redux.applyMiddleware
@@ -27,4 +28,4 @@ fun rThunk() =
 		}
 	)
 
-val nullAction = kotlinext.js.js { }.unsafeCast<WrapperAction>()
+val nullAction = jsObject<WrapperAction>()

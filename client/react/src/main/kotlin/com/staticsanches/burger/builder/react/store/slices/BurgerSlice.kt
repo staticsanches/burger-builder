@@ -1,10 +1,12 @@
 package com.staticsanches.burger.builder.react.store.slices
 
-import components.burger.BurgerIngredients
-import components.burger.IngredientType
+import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
+import com.staticsanches.burger.builder.react.components.burger.IngredientType
 import redux.RAction
 
 object BurgerSlice {
+
+	val initialState = State()
 
 	data class State(
 		val ingredients: BurgerIngredients = BurgerIngredients(),
@@ -14,7 +16,7 @@ object BurgerSlice {
 	class AddIngredient(val ingredientType: IngredientType) : RAction
 	class RemoveIngredient(val ingredientType: IngredientType) : RAction
 
-	fun reducer(state: State = State(), action: RAction): State {
+	fun reducer(state: State = initialState, action: RAction): State {
 		return when (action) {
 			is AddIngredient -> state.copy(
 				ingredients = state.ingredients.copy(
