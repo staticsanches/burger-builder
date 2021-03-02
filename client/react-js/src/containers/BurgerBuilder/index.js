@@ -8,30 +8,17 @@ import Modal from '../../components/UI/Modal';
 import Spinner from '../../components/UI/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler';
 import axios from '../../axios-order';
-import * as actionTypes from '../../store/actions';
+import * as actions from '../../store/actions';
 
 class BurgerBuilder extends React.Component {
 
 	state = {
-		purchasing: false,
-		error: false
+		purchasing: false
 	};
 
-	// useEffect(() => {
-	// 	axios.get('/ingredients.json')
-	// 		.then(response => {
-	// 			const newIngredients = response.data;
-	// 			let newPrice = INITIAL_PRICE;
-	// 			for (const key in newIngredients) {
-	// 				newPrice += newIngredients[key] * INGREDIENT_PRICES[key];
-	// 			}
-	// 			setIngredients(newIngredients);
-	// 			setTotalPrice(newPrice);
-	// 		})
-	// 		.catch(() => {
-	// 			setError(true);
-	// 		});
-	// }, []);
+	componentDidMount() {
+		this.props.fetchIngredients();
+	}
 
 	purchaseHandler = () => {
 		this.setState({ purchasing: true });
@@ -77,7 +64,7 @@ class BurgerBuilder extends React.Component {
 					purchaseContinued={this.purchaseContinueHandler} />
 			);
 		} else {
-			burgerWithControls = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
+			burgerWithControls = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 		}
 
 		return (
@@ -95,17 +82,16 @@ class BurgerBuilder extends React.Component {
 const mapStateToProps = state => {
 	return {
 		ingredients: state.ingredients,
-		totalPrice: state.totalPrice
+		totalPrice: state.totalPrice,
+		error: state.error
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onIngredientAdded: (ingredient) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingredient }),
-		onIngredientRemoved: (ingredient) => dispatch({
-			type: actionTypes.REMOVE_INGREDIENT,
-			ingredientName: ingredient
-		})
+		onIngredientAdded: (ingredient) => dispatch(actions.addIngredient(ingredient)),
+		onIngredientRemoved: (ingredient) => dispatch(actions.removeIngredient(ingredient)),
+		fetchIngredients: () => dispatch(actions.initIngredients())
 	};
 };
 
