@@ -16,6 +16,7 @@ android {
 		applicationId = "com.staticsanches.burger.builder.android"
 		minSdkVersion(16)
 		targetSdkVersion(30)
+		multiDexEnabled = true
 		versionCode = 1
 		versionName = "1.0"
 
@@ -26,6 +27,12 @@ android {
 		tasks.lint {
 			enabled = false
 		}
+	}
+
+	compileOptions {
+		isCoreLibraryDesugaringEnabled = true
+		sourceCompatibility(JavaVersion.VERSION_1_8)
+		targetCompatibility(JavaVersion.VERSION_1_8)
 	}
 
 	buildTypes {
@@ -44,13 +51,13 @@ kotlin {
 
 	target {
 		attributes {
-			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 6)
+			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
 			attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 		}
 		compilations.all {
 			tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>(compileKotlinTaskName)
 				.kotlinOptions {
-					jvmTarget = "1.6"
+					jvmTarget = "1.8"
 				}
 			tasks.withType<Test> {
 				useJUnitPlatform()
@@ -83,6 +90,8 @@ dependencies {
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.2")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+
+	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 }
 
 idea {

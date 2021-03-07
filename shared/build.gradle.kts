@@ -19,6 +19,7 @@ android {
 	defaultConfig {
 		minSdkVersion(16)
 		targetSdkVersion(30)
+		multiDexEnabled = true
 		versionCode = 1
 		versionName = "1.0"
 
@@ -29,6 +30,12 @@ android {
 		tasks.lint {
 			enabled = false
 		}
+	}
+
+	compileOptions {
+		isCoreLibraryDesugaringEnabled = true
+		sourceCompatibility(JavaVersion.VERSION_1_8)
+		targetCompatibility(JavaVersion.VERSION_1_8)
 	}
 
 	buildTypes {
@@ -53,6 +60,7 @@ android {
 
 dependencies {
 	androidTestImplementation("com.android.support.test:runner:1.0.2")
+	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 }
 
 kotlin {
@@ -76,12 +84,12 @@ kotlin {
 		android {
 			attributes {
 				attribute(androidAttribute, true)
-				attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 6)
+				attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
 				attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 			}
 			compilations.all {
 				kotlinOptions {
-					jvmTarget = "1.6"
+					jvmTarget = "1.8"
 				}
 				tasks.withType<Test> {
 					useJUnitPlatform()
