@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.Locale
 import kotlin.reflect.KProperty
 
 internal interface DependencyDelegate {

@@ -1,15 +1,58 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.InetAddress
 
 plugins {
 	kotlin("multiplatform")
 	kotlin("plugin.serialization")
+	id("com.android.library")
 	id("com.codingfeline.buildkonfig")
 	id("net.saliman.properties")
 	id("dependencies")
 	idea
+}
+
+android {
+
+	compileSdkVersion(30)
+	buildToolsVersion = "30.0.3"
+
+	defaultConfig {
+		minSdkVersion(16)
+		targetSdkVersion(30)
+		versionCode = 1
+		versionName = "1.0"
+
+		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	lintOptions {
+		tasks.lint {
+			enabled = false
+		}
+	}
+
+	buildTypes {
+		getByName("release") {
+			minifyEnabled(false)
+		}
+	}
+
+	sourceSets {
+		getByName("main") {
+			manifest.srcFile("src/androidMain/AndroidManifest.xml")
+			java.srcDirs("src/androidMain/kotlin")
+			res.srcDirs("src/androidMain/res")
+		}
+		getByName("androidTest") {
+			java.srcDirs("src/androidTest/kotlin")
+			res.srcDirs("src/androidTest/res")
+		}
+	}
+
+}
+
+dependencies {
+	androidTestImplementation("com.android.support.test:runner:1.0.2")
 }
 
 kotlin {
@@ -19,6 +62,7 @@ kotlin {
 			attributes {
 				attribute(androidAttribute, false)
 				attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
+				attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
 			}
 			compilations.all {
 				kotlinOptions {
@@ -29,7 +73,7 @@ kotlin {
 				}
 			}
 		}
-		jvm("android") {
+		android {
 			attributes {
 				attribute(androidAttribute, true)
 				attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 6)
@@ -57,7 +101,7 @@ kotlin {
 				}
 			}
 			compilations.all {
-				tasks.getByName<KotlinJsCompile>(compileKotlinTaskName).kotlinOptions {
+				kotlinOptions {
 					sourceMap = true
 					sourceMapEmbedSources = "always"
 					suppressWarnings = false
@@ -119,6 +163,7 @@ kotlin {
 
 		getByName("androidTest") {
 			dependsOn(commonTest)
+			dependsOn(getByName("androidAndroidTestRelease"))
 
 			dependencies {
 				implementation(kotlin("test-junit5"))

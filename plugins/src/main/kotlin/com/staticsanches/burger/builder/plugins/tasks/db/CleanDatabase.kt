@@ -1,9 +1,9 @@
 package com.staticsanches.burger.builder.plugins.tasks.db
 
+import org.flywaydb.core.Flyway
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-import org.flywaydb.core.Flyway
 
 /**
  * Using [Flyway], cleans the informed database.

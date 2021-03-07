@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 plugins {
 	id("com.android.application")
 	kotlin("android")
+	id("dependencies")
 	idea
 }
 
@@ -19,6 +20,12 @@ android {
 		versionName = "1.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	lintOptions {
+		tasks.lint {
+			enabled = false
+		}
 	}
 
 	buildTypes {
@@ -65,6 +72,8 @@ kotlin {
 dependencies {
 	implementation(project(":shared"))
 	implementation(project(":client:commons"))
+
+	implementation(Dependencies.kotlin.x.serializationJson)
 
 	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.31")
 	implementation("androidx.core:core-ktx:1.3.2")

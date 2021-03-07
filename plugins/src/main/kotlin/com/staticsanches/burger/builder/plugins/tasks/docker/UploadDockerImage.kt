@@ -7,7 +7,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import java.nio.file.Files
-import java.util.*
+import java.util.UUID
 
 /**
  * Task responsible for saving a docker image in .tar file and uploading it to a remote DigitalOcean droplet.
