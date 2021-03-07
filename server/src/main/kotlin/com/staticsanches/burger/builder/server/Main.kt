@@ -1,6 +1,5 @@
 package com.staticsanches.burger.builder.server
 
-import com.staticsanches.burger.builder.shared.json.toJson
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -19,7 +18,6 @@ fun Application.module() {
 	routing {
 
 		get("/") {
-			"".toJson()
 			call.respondText("Hello World from Server!", contentType = ContentType.Text.Plain)
 		}
 
