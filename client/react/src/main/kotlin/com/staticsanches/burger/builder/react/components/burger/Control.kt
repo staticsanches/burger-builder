@@ -3,6 +3,7 @@ package com.staticsanches.burger.builder.react.components.burger
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
 import com.staticsanches.burger.builder.shared.js.utils.toFixed
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
 import kotlinx.css.Align
 import kotlinx.css.BorderStyle
 import kotlinx.css.Color
@@ -42,9 +43,9 @@ interface BuildControlsProps : RProps {
 	var price: Number
 	var purchasable: Boolean
 	var ordered: EventHandler
-	var disabled: (IngredientType) -> Boolean
-	var lessHandler: (IngredientType) -> Unit
-	var moreHandler: (IngredientType) -> Unit
+	var disabled: (BurgerIngredientType) -> Boolean
+	var lessHandler: (BurgerIngredientType) -> Unit
+	var moreHandler: (BurgerIngredientType) -> Unit
 
 }
 
@@ -57,7 +58,7 @@ val buildControls by FunctionalComponentDelegate<BuildControlsProps> { props ->
 				+"\$${props.price.toFixed(2)}"
 			}
 		}
-		IngredientType.configurableValues
+		BurgerIngredientType.configurableValues
 			.renderEach { ingredient ->
 				control {
 					attrs {

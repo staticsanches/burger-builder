@@ -5,6 +5,8 @@ import com.staticsanches.burger.builder.react.components.ui.button
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
 import com.staticsanches.burger.builder.shared.js.utils.toFixed
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import kotlinx.css.TextTransform
 import kotlinx.css.textTransform
 import react.RProps
@@ -30,7 +32,7 @@ val orderSummary by FunctionalComponentDelegate<OrderSummaryProps> { props ->
 	h3 { +"Your Order" }
 	p { +"A delicious burger with the following ingredients:" }
 	ul {
-		IngredientType.configurableValues
+		BurgerIngredientType.configurableValues
 			.renderEach {
 				li {
 					key = it.name

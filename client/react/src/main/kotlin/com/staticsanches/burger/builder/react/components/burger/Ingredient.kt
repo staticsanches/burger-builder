@@ -1,6 +1,7 @@
 package com.staticsanches.burger.builder.react.components.burger
 
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
 import kotlinx.css.Color
 import kotlinx.css.LinearDimension
 import kotlinx.css.Position
@@ -32,13 +33,13 @@ import styled.styledDiv
 
 interface IngredientProps : RProps {
 
-	var type: IngredientType
+	var type: BurgerIngredientType
 
 }
 
 val ingredient by FunctionalComponentDelegate<IngredientProps> { props ->
 	when (props.type) {
-		IngredientType.TOP_BUN -> {
+		BurgerIngredientType.TOP_BUN -> {
 			styledDiv {
 				css {
 					+IngredientStyles.topBun
@@ -55,35 +56,35 @@ val ingredient by FunctionalComponentDelegate<IngredientProps> { props ->
 				}
 			}
 		}
-		IngredientType.SALAD -> {
+		BurgerIngredientType.SALAD -> {
 			styledDiv {
 				css {
 					+IngredientStyles.salad
 				}
 			}
 		}
-		IngredientType.BACON -> {
+		BurgerIngredientType.BACON -> {
 			styledDiv {
 				css {
 					+IngredientStyles.bacon
 				}
 			}
 		}
-		IngredientType.CHEESE -> {
+		BurgerIngredientType.CHEESE -> {
 			styledDiv {
 				css {
 					+IngredientStyles.cheese
 				}
 			}
 		}
-		IngredientType.MEAT -> {
+		BurgerIngredientType.MEAT -> {
 			styledDiv {
 				css {
 					+IngredientStyles.meat
 				}
 			}
 		}
-		IngredientType.BOTTOM_BUN -> {
+		BurgerIngredientType.BOTTOM_BUN -> {
 			styledDiv {
 				css {
 					+IngredientStyles.bottomBun

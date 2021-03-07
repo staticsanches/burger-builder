@@ -12,6 +12,7 @@ dependencies {
 	implementation(project(":client:commons"))
 
 	implementation(Dependencies.kotlin.x.serializationJson)
+	implementation(Dependencies.kotlin.x.collectionsImmutable)
 
 	implementation(Dependencies.kotlin.jsWrappers.react)
 	implementation(Dependencies.kotlin.jsWrappers.reactDom)

@@ -1,11 +1,11 @@
 package com.staticsanches.burger.builder.react.components.order
 
-import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
 import com.staticsanches.burger.builder.react.components.burger.burger
 import com.staticsanches.burger.builder.react.components.ui.ButtonType
 import com.staticsanches.burger.builder.react.components.ui.button
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import kotlinx.css.*
 import react.RProps
 import react.dom.h1

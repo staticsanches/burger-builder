@@ -1,9 +1,9 @@
 package com.staticsanches.burger.builder.react.components.order
 
-import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
-import com.staticsanches.burger.builder.react.components.burger.IngredientType
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
 import com.staticsanches.burger.builder.shared.js.utils.toFixed
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import kotlinx.css.BorderStyle
 import kotlinx.css.BoxSizing
 import kotlinx.css.Color
@@ -45,7 +45,7 @@ val order by FunctionalComponentDelegate<OrderProps> { props ->
 		}
 		p {
 			+"Ingredients: "
-			IngredientType.configurableValues.renderEach { type ->
+			BurgerIngredientType.configurableValues.renderEach { type ->
 				styledSpan {
 					css {
 						display = Display.inlineBlock

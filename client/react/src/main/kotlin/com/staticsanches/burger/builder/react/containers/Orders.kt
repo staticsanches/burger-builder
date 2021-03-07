@@ -1,12 +1,12 @@
 package com.staticsanches.burger.builder.react.containers
 
 import com.staticsanches.burger.builder.react.axios.axiosOrder
-import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
 import com.staticsanches.burger.builder.react.components.order.order
 import com.staticsanches.burger.builder.react.components.ui.spinner
 import com.staticsanches.burger.builder.react.hoc.withErrorBoundary
 import com.staticsanches.burger.builder.react.hoc.wrappedBy
 import com.staticsanches.burger.builder.shared.js.json.convertFromJson
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import kotlinext.js.Object
 import kotlinx.serialization.Serializable
 import react.*

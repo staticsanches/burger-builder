@@ -1,13 +1,13 @@
 package com.staticsanches.burger.builder.react.containers
 
 import com.staticsanches.burger.builder.react.axios.axiosOrder
-import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
 import com.staticsanches.burger.builder.react.components.ui.*
 import com.staticsanches.burger.builder.react.hoc.rConnect
 import com.staticsanches.burger.builder.react.hoc.wrappedBy
 import com.staticsanches.burger.builder.react.store.AppState
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.withExtendedRBuilder
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import kotlinext.js.js
 import kotlinx.css.BorderStyle
 import kotlinx.css.BoxSizing

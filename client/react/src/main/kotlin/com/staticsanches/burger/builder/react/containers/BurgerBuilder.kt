@@ -9,6 +9,8 @@ import com.staticsanches.burger.builder.react.hoc.wrappedBy
 import com.staticsanches.burger.builder.react.store.slices.BurgerSlice.AddIngredient
 import com.staticsanches.burger.builder.react.store.slices.BurgerSlice.RemoveIngredient
 import com.staticsanches.burger.builder.react.utils.EventHandler
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import react.*
 import react.dom.p
 import react.router.dom.RouteResultProps
@@ -32,8 +34,8 @@ private interface BurgerBuilderProps : RouteResultProps<RProps> {
 	var ingredients: BurgerIngredients
 	var price: Double
 
-	var onIngredientAdded: (IngredientType) -> Unit
-	var onIngredientRemoved: (IngredientType) -> Unit
+	var onIngredientAdded: (BurgerIngredientType) -> Unit
+	var onIngredientRemoved: (BurgerIngredientType) -> Unit
 
 }
 
@@ -50,7 +52,7 @@ private class BurgerBuilder(initialProps: BurgerBuilderProps) :
 		purchasing = false
 	}
 
-	val disabled = { type: IngredientType -> props.ingredients[type] == 0 }
+	val disabled = { type: BurgerIngredientType -> props.ingredients[type] == 0 }
 
 	val purchaseHandler: EventHandler = {
 		setState { purchasing = true }

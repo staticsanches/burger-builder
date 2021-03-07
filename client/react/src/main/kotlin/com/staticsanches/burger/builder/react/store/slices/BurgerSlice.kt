@@ -1,7 +1,7 @@
 package com.staticsanches.burger.builder.react.store.slices
 
-import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
-import com.staticsanches.burger.builder.react.components.burger.IngredientType
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import redux.RAction
 
 object BurgerSlice {
@@ -13,8 +13,8 @@ object BurgerSlice {
 		val price: Double = 4.0
 	)
 
-	class AddIngredient(val ingredientType: IngredientType) : RAction
-	class RemoveIngredient(val ingredientType: IngredientType) : RAction
+	class AddIngredient(val ingredientType: BurgerIngredientType) : RAction
+	class RemoveIngredient(val ingredientType: BurgerIngredientType) : RAction
 
 	fun reducer(state: State = initialState, action: RAction): State {
 		return when (action) {
@@ -38,11 +38,11 @@ object BurgerSlice {
 
 }
 
-private val IngredientType.price: Double
+private val BurgerIngredientType.price: Double
 	get() = when (this) {
-		IngredientType.SALAD -> 0.5
-		IngredientType.BACON -> 0.7
-		IngredientType.CHEESE -> 0.4
-		IngredientType.MEAT -> 1.3
+		BurgerIngredientType.SALAD -> 0.5
+		BurgerIngredientType.BACON -> 0.7
+		BurgerIngredientType.CHEESE -> 0.4
+		BurgerIngredientType.MEAT -> 1.3
 		else -> error("Invalid ingredient: $label")
 	}

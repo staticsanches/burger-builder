@@ -128,6 +128,7 @@ kotlin {
 		val commonMain by getting {
 			dependencies {
 				implementation(Dependencies.kotlin.x.serializationJson)
+				implementation(Dependencies.kotlin.x.collectionsImmutable)
 			}
 		}
 

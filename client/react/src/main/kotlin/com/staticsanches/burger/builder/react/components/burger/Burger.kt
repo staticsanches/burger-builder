@@ -1,6 +1,8 @@
 package com.staticsanches.burger.builder.react.components.burger
 
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredientType
+import com.staticsanches.burger.builder.shared.model.burger.BurgerIngredients
 import kotlinx.css.*
 import react.RBuilder
 import react.RProps
@@ -42,7 +44,7 @@ val burger by FunctionalComponentDelegate<BurgerProps> { props ->
 			}
 		}
 		ingredient {
-			attrs.type = IngredientType.TOP_BUN
+			attrs.type = BurgerIngredientType.TOP_BUN
 		}
 		if (props.ingredients.total == 0) {
 			p { +"Please, start adding ingredients!" }
@@ -53,13 +55,13 @@ val burger by FunctionalComponentDelegate<BurgerProps> { props ->
 			toIngredients(props.ingredients::meat)
 		}
 		ingredient {
-			attrs.type = IngredientType.BOTTOM_BUN
+			attrs.type = BurgerIngredientType.BOTTOM_BUN
 		}
 	}
 }
 
 private fun RBuilder.toIngredients(property: KProperty0<Int>) {
-	val type = IngredientType.valueOf(property.name.toUpperCase())
+	val type = BurgerIngredientType.valueOf(property.name.toUpperCase())
 	List(property.get()) { type }
 		.renderEachIndexed { index, _ ->
 			ingredient {
