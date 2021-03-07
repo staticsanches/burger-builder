@@ -1,8 +1,11 @@
-package task
+package com.staticsanches.burger.builder.plugins.tasks.docker
 
+import com.staticsanches.burger.builder.plugins.tasks.execute
+import com.staticsanches.burger.builder.plugins.tasks.remoteHomeFolder
+import com.staticsanches.burger.builder.plugins.tasks.ssh
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-import org.gradle.kotlin.dsl.provideDelegate
 import java.nio.file.Files
 import java.util.*
 
@@ -11,7 +14,8 @@ import java.util.*
  */
 open class UploadDockerImage : DefaultTask() {
 
-	private val dockerTag: String by project
+	@Input
+	lateinit var dockerTag: String
 
 	@TaskAction
 	fun run() {
@@ -25,7 +29,9 @@ open class UploadDockerImage : DefaultTask() {
 
 		// Upload the .tar file
 		var remotePath = remoteHomeFolder + UUID.randomUUID() + ".tar"
-		while (ssh.executeWithReturn("test -e $remotePath && echo true || echo false").toBoolean()) {
+		while (ssh.executeWithReturn("test -e $remotePath && echo true || echo false")
+				.toBoolean()
+		) {
 			remotePath = remoteHomeFolder + UUID.randomUUID() + ".tar"
 		}
 		ssh.upload(tarFile.absolutePath, remotePath)

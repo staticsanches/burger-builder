@@ -14,13 +14,7 @@ import kotlinx.css.opacity
 import kotlinx.css.padding
 import kotlinx.css.pct
 import kotlinx.css.position
-import kotlinx.css.properties.Timing
-import kotlinx.css.properties.border
-import kotlinx.css.properties.boxShadow
-import kotlinx.css.properties.s
-import kotlinx.css.properties.transform
-import kotlinx.css.properties.transition
-import kotlinx.css.properties.translateY
+import kotlinx.css.properties.*
 import kotlinx.css.px
 import kotlinx.css.top
 import kotlinx.css.vh

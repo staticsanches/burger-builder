@@ -1,4 +1,4 @@
-package task
+package com.staticsanches.burger.builder.plugins.tasks
 
 import org.gradle.api.Task
 import java.io.ByteArrayOutputStream

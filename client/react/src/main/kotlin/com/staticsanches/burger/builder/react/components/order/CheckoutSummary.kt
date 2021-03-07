@@ -6,13 +6,7 @@ import com.staticsanches.burger.builder.react.components.ui.ButtonType
 import com.staticsanches.burger.builder.react.components.ui.button
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
-import kotlinx.css.LinearDimension
-import kotlinx.css.TextAlign
-import kotlinx.css.margin
-import kotlinx.css.pct
-import kotlinx.css.px
-import kotlinx.css.textAlign
-import kotlinx.css.width
+import kotlinx.css.*
 import react.RProps
 import react.dom.h1
 import styled.css

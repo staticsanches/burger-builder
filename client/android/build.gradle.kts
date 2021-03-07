@@ -24,7 +24,10 @@ android {
 	buildTypes {
 		getByName("release") {
 			isMinifyEnabled = false
-			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+			proguardFiles(
+				getDefaultProguardFile("proguard-android-optimize.txt"),
+				"proguard-rules.pro"
+			)
 		}
 	}
 
@@ -34,14 +37,14 @@ kotlin {
 
 	target {
 		attributes {
-			attribute(androidAttribute, true)
 			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 6)
 			attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 		}
 		compilations.all {
-			tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>(compileKotlinTaskName).kotlinOptions {
-				jvmTarget = "1.6"
-			}
+			tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>(compileKotlinTaskName)
+				.kotlinOptions {
+					jvmTarget = "1.6"
+				}
 			tasks.withType<Test> {
 				useJUnitPlatform()
 			}
@@ -63,7 +66,7 @@ dependencies {
 	implementation(project(":shared"))
 	implementation(project(":client:commons"))
 
-	implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.31")
 	implementation("androidx.core:core-ktx:1.3.2")
 	implementation("androidx.appcompat:appcompat:1.2.0")
 	implementation("com.google.android.material:material:1.3.0")

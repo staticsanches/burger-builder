@@ -1,12 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	kotlin("multiplatform")
-	kotlin("plugin.serialization") version Versions.kotlin
+	kotlin("plugin.serialization")
 	id("com.codingfeline.buildkonfig")
-	id("net.saliman.properties") version Versions.salimanGradleProperties
+	id("net.saliman.properties")
+	id("dependencies")
+
 	idea
 }
 
@@ -20,7 +21,7 @@ kotlin {
 				attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 			}
 			compilations.all {
-				tasks.getByName<KotlinCompile>(compileKotlinTaskName).kotlinOptions {
+				kotlinOptions {
 					jvmTarget = "1.6"
 				}
 				tasks.withType<Test> {
@@ -33,7 +34,8 @@ kotlin {
 				testTask {
 					testLogging {
 						showExceptions = true
-						exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+						exceptionFormat =
+							org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 						showCauses = true
 						showStackTraces = true
 					}
@@ -124,7 +126,11 @@ buildkonfig {
 
 	val firebaseUrl: String by project
 	defaultConfigs {
-		buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "firebaseUrl", firebaseUrl)
+		buildConfigField(
+			com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+			"firebaseUrl",
+			firebaseUrl
+		)
 	}
 }
 

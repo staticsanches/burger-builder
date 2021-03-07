@@ -3,10 +3,24 @@ plugins {
 	application
 	kotlin("jvm")
 	id("kotlin-kapt")
-	kotlin("plugin.serialization") version Versions.kotlin
-	id("com.github.johnrengelman.shadow") version Versions.shadow
-	id("net.saliman.properties") version Versions.salimanGradleProperties
+	kotlin("plugin.serialization")
+	id("com.github.johnrengelman.shadow")
+	id("net.saliman.properties")
+	id("dependencies")
+	id("remote-docker")
+	id("local-environment")
 	idea
+}
+
+dependencies {
+	implementation(project(":shared"))
+
+	implementation(Dependencies.ktor.auth)
+	implementation(Dependencies.ktor.authJwt)
+	implementation(Dependencies.ktor.serialization)
+	implementation(Dependencies.ktor.server)
+	implementation(Dependencies.ktor.serverNetty)
+	implementation("ch.qos.logback:logback-classic:${Versions.logback}")
 }
 
 kotlin {
@@ -20,7 +34,7 @@ kotlin {
 
 		compilations.all {
 			kotlinOptions {
-				useIR = true
+				//useIR = true
 				jvmTarget = "1.8"
 				freeCompilerArgs = freeCompilerArgs + listOf(
 					"-XXLanguage:+InlineClasses",
@@ -37,15 +51,19 @@ kotlin {
 
 }
 
-dependencies {
-	implementation(project(":shared"))
+remoteDocker {
+	dockerTag = "burger-builder/server"
+}
 
-	implementation("io.ktor:ktor-auth:${Versions.ktor}")
-	implementation("io.ktor:ktor-auth-jwt:${Versions.ktor}")
-	implementation("io.ktor:ktor-serialization:${Versions.ktor}")
-	implementation("io.ktor:ktor-server:${Versions.ktor}")
-	implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
-	implementation("ch.qos.logback:logback-classic:${Versions.logback}")
+localEnvironment {
+	baseDirectory = "local-environment"
+
+	database {
+		driver = "org.postgresql.Driver"
+		url = "jdbc:postgresql://localhost:54321/burger-builder"
+		user = "burger-builder"
+		password = "burger-builder"
+	}
 }
 
 application {
@@ -54,35 +72,6 @@ application {
 }
 
 tasks {
-
-	val dockerBuild by registering(task.DockerBuild::class) {
-		dependsOn(build)
-	}
-
-	register("uploadDockerImage", task.UploadDockerImage::class) {
-		dependsOn(dockerBuild)
-		doFirst {
-			val useRemoteIP: String by project
-			require(useRemoteIP.toBoolean()) { "Property 'useRemoteIP' must be set to true" }
-		}
-	}
-
-	val startLocalEnvironment by registering(task.DockerComposeUp::class) {
-		baseDirectory = "local-environment"
-	}
-
-	register("stopLocalEnvironment", task.DockerComposeDown::class) {
-		baseDirectory = "local-environment"
-	}
-
-	register("cleanLocalDatabase", task.db.CleanDatabase::class) {
-		dependsOn(startLocalEnvironment)
-
-		driver = "org.postgresql.Driver"
-		url = "jdbc:postgresql://localhost:54321/burger-builder"
-		user = "burger-builder"
-		password = "burger-builder"
-	}
 
 	test {
 		useJUnitPlatform()

@@ -1,7 +1,9 @@
 plugins {
 	kotlin("js")
-	kotlin("plugin.serialization") version Versions.kotlin
-	id("net.saliman.properties") version Versions.salimanGradleProperties
+	kotlin("plugin.serialization")
+	id("net.saliman.properties")
+	id("dependencies")
+	id("remote-docker")
 	idea
 }
 
@@ -9,16 +11,23 @@ dependencies {
 	implementation(project(":shared"))
 	implementation(project(":client:commons"))
 
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
+	implementation(Dependencies.kotlin.x.serializationJson)
 
-	implementation("org.jetbrains:kotlin-react:${Versions.kotlinReact}")
-	implementation("org.jetbrains:kotlin-react-dom:${Versions.kotlinReact}")
-	implementation("org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}")
-	implementation("org.jetbrains:kotlin-styled:${Versions.kotlinStyled}")
-	implementation("org.jetbrains:kotlin-redux:${Versions.kotlinRedux}")
-	implementation("org.jetbrains:kotlin-react-redux:${Versions.kotlinReactRedux}")
+	implementation(Dependencies.kotlin.jsWrappers.react)
+	implementation(Dependencies.kotlin.jsWrappers.reactDom)
+	implementation(Dependencies.kotlin.jsWrappers.reactRouterDom)
+	implementation(Dependencies.kotlin.jsWrappers.redux)
+	implementation(Dependencies.kotlin.jsWrappers.reactRedux)
+	implementation(Dependencies.kotlin.jsWrappers.styled)
 
-	implementation(npm("axios", "0.21.1"))
+	implementation(npm("axios", Versions.axios))
+	implementation(npm("react", Versions.react))
+	implementation(npm("react-is", Versions.react))
+	implementation(npm("react-dom", Versions.react))
+	implementation(npm("react-router-dom", Versions.reactRouterDom))
+	implementation(npm("redux", Versions.redux))
+	implementation(npm("react-redux", Versions.reactRedux))
+	implementation(npm("styled-components", Versions.styled))
 }
 
 kotlin {
@@ -35,14 +44,15 @@ kotlin {
 			}
 		}
 		compilations.all {
-			tasks.getByName<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>(compileKotlinTaskName).kotlinOptions {
-				sourceMap = true
-				sourceMapEmbedSources = "always"
-				suppressWarnings = false
-				verbose = true
-				metaInfo = true
-				main = "call"
-			}
+			tasks.getByName<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>(compileKotlinTaskName)
+				.kotlinOptions {
+					sourceMap = true
+					sourceMapEmbedSources = "always"
+					suppressWarnings = false
+					verbose = true
+					metaInfo = true
+					main = "call"
+				}
 			kotlinOptions {
 				languageVersion = "1.4"
 				apiVersion = "1.4"
@@ -62,6 +72,10 @@ kotlin {
 		}
 	}
 
+}
+
+remoteDocker {
+	dockerTag = "burger-builder/client"
 }
 
 idea {

@@ -2,25 +2,7 @@ package com.staticsanches.burger.builder.react.components.navigation
 
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
-import kotlinx.css.Align
-import kotlinx.css.BoxSizing
-import kotlinx.css.Color
-import kotlinx.css.Cursor
-import kotlinx.css.Display
-import kotlinx.css.FlexDirection
-import kotlinx.css.JustifyContent
-import kotlinx.css.alignItems
-import kotlinx.css.backgroundColor
-import kotlinx.css.boxSizing
-import kotlinx.css.cursor
-import kotlinx.css.display
-import kotlinx.css.flexDirection
-import kotlinx.css.height
-import kotlinx.css.justifyContent
-import kotlinx.css.padding
-import kotlinx.css.pct
-import kotlinx.css.px
-import kotlinx.css.width
+import kotlinx.css.*
 import kotlinx.html.js.onClickFunction
 import react.RProps
 import react.dom.div

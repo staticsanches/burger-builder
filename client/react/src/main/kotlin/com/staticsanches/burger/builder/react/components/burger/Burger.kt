@@ -1,20 +1,7 @@
 package com.staticsanches.burger.builder.react.components.burger
 
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
-import kotlinx.css.FontWeight
-import kotlinx.css.LinearDimension
-import kotlinx.css.Overflow
-import kotlinx.css.TextAlign
-import kotlinx.css.fontSize
-import kotlinx.css.fontWeight
-import kotlinx.css.height
-import kotlinx.css.margin
-import kotlinx.css.overflow
-import kotlinx.css.pct
-import kotlinx.css.px
-import kotlinx.css.rem
-import kotlinx.css.textAlign
-import kotlinx.css.width
+import kotlinx.css.*
 import react.RBuilder
 import react.RProps
 import react.dom.p

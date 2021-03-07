@@ -1,4 +1,4 @@
-package task
+package com.staticsanches.burger.builder.plugins.tasks
 
 import net.schmizz.sshj.SSHClient
 import org.gradle.api.Task
@@ -44,7 +44,7 @@ internal val Task.sshKeyPassword: String?
 	}
 
 
-fun closeSsh() {
+internal fun closeSsh() {
 	sshClient?.apply {
 		println("Closing ssh client!")
 		close()

@@ -28,24 +28,14 @@ import kotlinx.css.margin
 import kotlinx.css.outline
 import kotlinx.css.padding
 import kotlinx.css.pct
-import kotlinx.css.properties.Timing
-import kotlinx.css.properties.animation
-import kotlinx.css.properties.border
-import kotlinx.css.properties.boxShadow
-import kotlinx.css.properties.s
-import kotlinx.css.properties.scale
-import kotlinx.css.properties.transform
+import kotlinx.css.properties.*
 import kotlinx.css.px
 import kotlinx.css.width
 import kotlinx.html.js.onClickFunction
 import react.RProps
 import react.dom.p
 import react.dom.strong
-import styled.StyleSheet
-import styled.css
-import styled.keyframes
-import styled.styledButton
-import styled.styledDiv
+import styled.*
 
 interface BuildControlsProps : RProps {
 

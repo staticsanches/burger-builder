@@ -1,11 +1,7 @@
 package com.staticsanches.burger.builder.react.utils
 
 import kotlinext.js.jsObject
-import react.RBuilder
-import react.RClass
-import react.RProps
-import react.ReactElement
-import react.buildElement
+import react.*
 import react.router.dom.RouteComponent
 import react.router.dom.RouteProps
 import react.router.dom.RouteResultProps

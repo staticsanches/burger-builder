@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED")
+
 /**
  * Centralize all used versions.
  */
@@ -10,13 +12,14 @@ object Versions {
 
 	// kotlinx
 	const val kotlinxAtomicfu = "0.15.0"
-	const val kotlinxCollections = "0.3.3"
+	const val kotlinxCollectionsImmutable = "0.3.3"
 	const val kotlinxCoroutines = "1.4.2"
 	const val kotlinxDatetime = "0.1.1"
 	const val kotlinxHtml = "0.7.2"
-	const val kotlinxSerialization = "1.1.0"
+	const val kotlinxSerializationJson = "1.1.0"
 
 	// js
+	const val axios = "0.21.1"
 	const val muirwik = "0.6.3"
 	const val react = "17.0.1"
 	const val kotlinReact = "$react-$kotlinJsWrappersBuild"
@@ -37,6 +40,10 @@ object Versions {
 	const val okio = "2.10.0"
 	const val okhttp = "4.9.1"
 
+	// terminal
+	const val sshj = "0.31.0"
+	const val progressbar = "0.9.0"
+
 	// database
 	const val exposed = "0.29.1"
 	const val flywaydb = "7.5.3"
@@ -46,10 +53,5 @@ object Versions {
 	// test
 	const val junit = "5.2.0"
 	const val kotest = "4.4.1"
-
-	// plugins
-	const val buildKonfig = "0.7.0"
-	const val salimanGradleProperties = "1.5.1"
-	const val shadow = "6.1.0"
 
 }

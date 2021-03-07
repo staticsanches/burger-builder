@@ -131,12 +131,26 @@ external interface AxiosInstance {
 	var interceptors: AxiosInterceptors
 	fun getUri(config: AxiosRequestConfig = definedExternally): String
 	fun <R> request(config: AxiosRequestConfig): Promise<R>
-	fun <R> get(url: String, config: AxiosRequestConfig = definedExternally): Promise<AxiosResponse<R>>
+	fun <R> get(
+		url: String,
+		config: AxiosRequestConfig = definedExternally
+	): Promise<AxiosResponse<R>>
+
 	fun <R> delete(url: String, config: AxiosRequestConfig = definedExternally): Promise<R>
 	fun <R> head(url: String, config: AxiosRequestConfig = definedExternally): Promise<R>
 	fun <R> options(url: String, config: AxiosRequestConfig = definedExternally): Promise<R>
-	fun <R> post(url: String, data: Any = definedExternally, config: AxiosRequestConfig = definedExternally): Promise<R>
-	fun <R> put(url: String, data: Any = definedExternally, config: AxiosRequestConfig = definedExternally): Promise<R>
+	fun <R> post(
+		url: String,
+		data: Any = definedExternally,
+		config: AxiosRequestConfig = definedExternally
+	): Promise<R>
+
+	fun <R> put(
+		url: String,
+		data: Any = definedExternally,
+		config: AxiosRequestConfig = definedExternally
+	): Promise<R>
+
 	fun <R> patch(
 		url: String, data: Any = definedExternally, config: AxiosRequestConfig = definedExternally
 	): Promise<R>

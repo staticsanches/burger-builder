@@ -1,4 +1,4 @@
-package task
+package com.staticsanches.burger.builder.plugins.tasks
 
 import me.tongfei.progressbar.ConsoleProgressBarConsumer
 import me.tongfei.progressbar.ProgressBar

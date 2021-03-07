@@ -5,9 +5,10 @@ import java.net.InetAddress
 
 plugins {
 	kotlin("multiplatform")
-	kotlin("plugin.serialization") version Versions.kotlin
+	kotlin("plugin.serialization")
 	id("com.codingfeline.buildkonfig")
-	id("net.saliman.properties") version Versions.salimanGradleProperties
+	id("net.saliman.properties")
+	id("dependencies")
 	idea
 }
 
@@ -20,10 +21,8 @@ kotlin {
 				attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
 			}
 			compilations.all {
-				tasks.named<KotlinCompile>(compileKotlinTaskName) {
-					kotlinOptions {
-						jvmTarget = "1.8"
-					}
+				kotlinOptions {
+					jvmTarget = "1.8"
 				}
 				tasks.withType<Test> {
 					useJUnitPlatform()
@@ -37,7 +36,7 @@ kotlin {
 				attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 			}
 			compilations.all {
-				tasks.getByName<KotlinCompile>(compileKotlinTaskName).kotlinOptions {
+				kotlinOptions {
 					jvmTarget = "1.6"
 				}
 				tasks.withType<Test> {
@@ -50,7 +49,8 @@ kotlin {
 				testTask {
 					testLogging {
 						showExceptions = true
-						exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+						exceptionFormat =
+							org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 						showCauses = true
 						showStackTraces = true
 					}
@@ -83,7 +83,7 @@ kotlin {
 
 		val commonMain by getting {
 			dependencies {
-				implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
+				implementation(Dependencies.kotlin.x.serializationJson)
 			}
 		}
 
@@ -169,7 +169,11 @@ buildkonfig {
 
 	val apiBaseUrl = "http://$apiIP:$apiPort"
 	defaultConfigs {
-		buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "apiBaseUrl", apiBaseUrl)
+		buildConfigField(
+			com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+			"apiBaseUrl",
+			apiBaseUrl
+		)
 	}
 }
 

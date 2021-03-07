@@ -1,4 +1,5 @@
 plugins {
+	id("close-ssh")
 	idea
 }
 
@@ -6,16 +7,20 @@ buildscript {
 
 	repositories {
 		google()
-		mavenCentral()
 		jcenter()
+		mavenCentral()
 		maven(url = "https://maven.google.com")
-		maven(url = "http://jcenter.bintray.com/")
 	}
 
+	val kotlinVersion = "1.4.30"
+
 	dependencies {
-		classpath("com.android.tools.build:gradle:4.0.2")
-		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-		classpath("com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:${Versions.buildKonfig}")
+		classpath("com.android.tools.build:gradle:4.1.2")
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
+		classpath("com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0")
+		classpath("net.saliman:gradle-properties-plugin:1.5.1")
+		classpath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
 	}
 
 }
@@ -30,7 +35,6 @@ allprojects {
 		jcenter()
 		mavenCentral()
 		maven(url = "https://maven.google.com")
-		maven(url = "http://jcenter.bintray.com/")
 		maven(url = "https://dl.bintray.com/kotlin/exposed")
 		maven(url = "https://dl.bintray.com/kotlin/kotlin-dev")
 		maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
@@ -42,12 +46,9 @@ allprojects {
 
 }
 
-gradle.buildFinished {
-	task.closeSsh()
-}
-
 idea {
 	module {
-		excludeDirs = excludeDirs + file("build") + file("gradle")
+		name = "burger-builder"
+		excludeDirs = excludeDirs + file(".idea") + file("gradle")
 	}
 }

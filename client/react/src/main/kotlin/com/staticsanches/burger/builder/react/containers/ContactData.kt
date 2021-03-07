@@ -2,12 +2,7 @@ package com.staticsanches.burger.builder.react.containers
 
 import com.staticsanches.burger.builder.react.axios.axiosOrder
 import com.staticsanches.burger.builder.react.components.burger.BurgerIngredients
-import com.staticsanches.burger.builder.react.components.ui.ButtonType
-import com.staticsanches.burger.builder.react.components.ui.CustomInput
-import com.staticsanches.burger.builder.react.components.ui.CustomInputConfig
-import com.staticsanches.burger.builder.react.components.ui.CustomSelect
-import com.staticsanches.burger.builder.react.components.ui.button
-import com.staticsanches.burger.builder.react.components.ui.spinner
+import com.staticsanches.burger.builder.react.components.ui.*
 import com.staticsanches.burger.builder.react.hoc.rConnect
 import com.staticsanches.burger.builder.react.hoc.wrappedBy
 import com.staticsanches.burger.builder.react.store.AppState
@@ -31,16 +26,10 @@ import kotlinx.css.width
 import kotlinx.html.InputType
 import kotlinx.html.js.onSubmitFunction
 import org.w3c.dom.events.Event
-import react.RBuilder
-import react.RClass
-import react.RComponent
-import react.RProps
-import react.RState
+import react.*
 import react.dom.form
 import react.dom.h4
-import react.key
 import react.router.dom.RouteResultProps
-import react.setState
 import styled.css
 import styled.styledDiv
 import kotlin.reflect.KMutableProperty1

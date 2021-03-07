@@ -1,4 +1,4 @@
-package task.db
+package com.staticsanches.burger.builder.plugins.tasks.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

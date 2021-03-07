@@ -1,4 +1,4 @@
-package task.db
+package com.staticsanches.burger.builder.plugins.tasks.db
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input

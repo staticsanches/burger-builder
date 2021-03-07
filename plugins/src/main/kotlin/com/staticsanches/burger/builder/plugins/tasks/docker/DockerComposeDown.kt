@@ -1,5 +1,6 @@
-package task
+package com.staticsanches.burger.builder.plugins.tasks.docker
 
+import com.staticsanches.burger.builder.plugins.tasks.execute
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction

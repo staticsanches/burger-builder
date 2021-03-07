@@ -15,7 +15,7 @@ services:
       - local-environment-network
 
   burger-builder-pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@burger-builder.com
       - PGADMIN_DEFAULT_PASSWORD=admin

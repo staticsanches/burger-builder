@@ -4,15 +4,7 @@ import com.staticsanches.burger.builder.react.utils.rThunk
 import kotlinext.js.Object
 import kotlinext.js.assign
 import kotlinext.js.js
-import redux.Action
-import redux.Enhancer
-import redux.RAction
-import redux.Reducer
-import redux.Store
-import redux.StoreCreator
-import redux.WrapperAction
-import redux.compose
-import redux.createStore
+import redux.*
 
 @Suppress("UnsafeCastFromDynamic")
 val store = createStore<AppState, RAction, dynamic>(
@@ -28,13 +20,14 @@ val store = createStore<AppState, RAction, dynamic>(
 // Credit: https://medium.com/@night.crawler/a-fresh-start-with-kotlin-js-and-react-redux-subtleties-1-7519dee298d1
 private fun <S> customEnhancer(): Enhancer<S, Action, Action, RAction, WrapperAction> = { next ->
 	{ reducer, initialState ->
-		fun wrapperReducer(reducer: Reducer<S, RAction>): Reducer<S, WrapperAction> = { state, action ->
-			if (!action.asDynamic().isKotlin as Boolean) {
-				reducer(state, action.asDynamic().unsafeCast<RAction>())
-			} else {
-				reducer(state, action.action)
+		fun wrapperReducer(reducer: Reducer<S, RAction>): Reducer<S, WrapperAction> =
+			{ state, action ->
+				if (!action.asDynamic().isKotlin as Boolean) {
+					reducer(state, action.asDynamic().unsafeCast<RAction>())
+				} else {
+					reducer(state, action.action)
+				}
 			}
-		}
 
 		val nextStoreCreator = next.unsafeCast<StoreCreator<S, WrapperAction, WrapperAction>>()
 		val store = nextStoreCreator(

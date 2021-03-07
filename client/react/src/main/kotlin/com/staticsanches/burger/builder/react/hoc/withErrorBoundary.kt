@@ -2,13 +2,7 @@ package com.staticsanches.burger.builder.react.hoc
 
 import com.staticsanches.burger.builder.react.components.ui.modal
 import com.staticsanches.burger.builder.react.utils.EventHandler
-import react.RBuilder
-import react.RClass
-import react.RComponent
-import react.RErrorInfo
-import react.RProps
-import react.RState
-import react.setState
+import react.*
 
 fun <P : RProps> withErrorBoundary(fallback: RBuilder.() -> Unit): HOC<P, P> {
 	val withErrorBoundary by FactoryHOCDelegate<P> { component, initialProps ->

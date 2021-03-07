@@ -1,10 +1,16 @@
 rootProject.name = "burger-builder"
 
+pluginManagement {
+	repositories {
+		google()
+		jcenter()
+		gradlePluginPortal()
+	}
+}
+
+includeBuild("dependencies")
+includeBuild("plugins")
+
 include(":shared")
-
 include(":server")
-
-include(":client")
-include(":client:commons")
-include(":client:android")
-include(":client:react")
+include(":client", ":client:commons", ":client:android", ":client:react")

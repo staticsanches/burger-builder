@@ -5,34 +5,14 @@ import com.staticsanches.burger.builder.react.hoc.wrappedBy
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
 import kotlinext.js.jsObject
-import kotlinx.css.BorderStyle
-import kotlinx.css.BoxSizing
-import kotlinx.css.Color
-import kotlinx.css.Display
-import kotlinx.css.FontWeight
-import kotlinx.css.Outline
-import kotlinx.css.backgroundColor
-import kotlinx.css.boxSizing
-import kotlinx.css.display
-import kotlinx.css.fontWeight
-import kotlinx.css.marginBottom
-import kotlinx.css.outline
-import kotlinx.css.padding
-import kotlinx.css.pct
+import kotlinx.css.*
 import kotlinx.css.properties.border
-import kotlinx.css.px
-import kotlinx.css.width
 import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import react.RBuilder
 import react.RProps
 import react.dom.option
-import styled.StyleSheet
-import styled.css
-import styled.styledDiv
-import styled.styledInput
-import styled.styledLabel
-import styled.styledSelect
+import styled.*
 
 interface CustomInputConfig
 

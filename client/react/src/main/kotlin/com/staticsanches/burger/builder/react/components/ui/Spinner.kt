@@ -1,25 +1,9 @@
 package com.staticsanches.burger.builder.react.components.ui
 
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
-import kotlinx.css.Color
-import kotlinx.css.LinearDimension
-import kotlinx.css.Position
-import kotlinx.css.borderRadius
-import kotlinx.css.color
-import kotlinx.css.content
-import kotlinx.css.em
-import kotlinx.css.fontSize
-import kotlinx.css.height
-import kotlinx.css.left
-import kotlinx.css.margin
-import kotlinx.css.pct
-import kotlinx.css.position
+import kotlinx.css.*
 import kotlinx.css.properties.transform
 import kotlinx.css.properties.translateZ
-import kotlinx.css.px
-import kotlinx.css.quoted
-import kotlinx.css.top
-import kotlinx.css.width
 import react.RProps
 import styled.StyleSheet
 import styled.css

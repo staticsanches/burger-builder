@@ -9,14 +9,9 @@ import com.staticsanches.burger.builder.react.hoc.wrappedBy
 import com.staticsanches.burger.builder.react.store.slices.BurgerSlice.AddIngredient
 import com.staticsanches.burger.builder.react.store.slices.BurgerSlice.RemoveIngredient
 import com.staticsanches.burger.builder.react.utils.EventHandler
-import react.RBuilder
-import react.RClass
-import react.RComponent
-import react.RProps
-import react.RState
+import react.*
 import react.dom.p
 import react.router.dom.RouteResultProps
-import react.setState
 
 val burgerBuilder: RClass<RProps> =
 	BurgerBuilder::class wrappedBy rConnect<BurgerBuilderProps, RProps>(

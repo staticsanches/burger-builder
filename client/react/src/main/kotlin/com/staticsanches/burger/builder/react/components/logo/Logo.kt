@@ -1,15 +1,7 @@
 package com.staticsanches.burger.builder.react.components.logo
 
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
-import kotlinx.css.BoxSizing
-import kotlinx.css.Color
-import kotlinx.css.backgroundColor
-import kotlinx.css.borderRadius
-import kotlinx.css.boxSizing
-import kotlinx.css.height
-import kotlinx.css.padding
-import kotlinx.css.pct
-import kotlinx.css.px
+import kotlinx.css.*
 import react.RProps
 import react.dom.img
 import styled.css

@@ -2,17 +2,7 @@ package com.staticsanches.burger.builder.react.components.ui
 
 import com.staticsanches.burger.builder.react.utils.EventHandler
 import com.staticsanches.burger.builder.react.utils.FunctionalComponentDelegate
-import kotlinx.css.Position
-import kotlinx.css.backgroundColor
-import kotlinx.css.height
-import kotlinx.css.left
-import kotlinx.css.pct
-import kotlinx.css.position
-import kotlinx.css.px
-import kotlinx.css.rgba
-import kotlinx.css.top
-import kotlinx.css.width
-import kotlinx.css.zIndex
+import kotlinx.css.*
 import kotlinx.html.js.onClickFunction
 import react.RProps
 import styled.css
