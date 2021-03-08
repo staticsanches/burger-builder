@@ -5,6 +5,7 @@
  */
 object Dependencies {
 
+	val android = Android
 	val general = General
 	val junit = Junit
 	val kotlin = Kotlin
@@ -12,6 +13,7 @@ object Dependencies {
 
 	object Kotlin {
 
+		const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 		val jsWrappers = JsWrappers
 		val x = X
 
@@ -98,6 +100,12 @@ object Dependencies {
 			val engine by dependency()
 
 		}
+
+	}
+
+	object Android {
+
+		const val gradlePlugin = "com.android.tools.build:gradle:${Versions.androidPlugin}"
 
 	}
 

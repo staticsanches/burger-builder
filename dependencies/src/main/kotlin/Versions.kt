@@ -10,6 +10,8 @@ object Versions {
 	// kotlin-js-wrappers
 	private const val kotlinJsWrappersBuild = "pre.148-kotlin-$kotlin"
 
+	const val androidPlugin = "4.1.2"
+
 	// kotlinx
 	const val kotlinxAtomicfu = "0.15.0"
 	const val kotlinxCollectionsImmutable = "0.3.3"

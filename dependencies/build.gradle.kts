@@ -19,9 +19,9 @@ gradlePlugin {
 			id = "dependencies"
 			implementationClass = "com.staticsanches.burger.builder.dependencies.DependenciesPlugin"
 		}
-		register("check-kotlin-version") {
-			id = "check-kotlin-version"
-			implementationClass = "com.staticsanches.burger.builder.dependencies.CheckKotlinVersionPlugin"
+		register("check-plugins-versions") {
+			id = "check-plugins-versions"
+			implementationClass = "com.staticsanches.burger.builder.dependencies.CheckPluginsVersionsPlugin"
 		}
 	}
 }

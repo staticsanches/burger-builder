@@ -1,8 +1,8 @@
+import com.staticsanches.burger.builder.plugins.configurations.commonConfigurations
+
 plugins {
 	kotlin("js")
-	kotlin("plugin.serialization")
-	id("net.saliman.properties")
-	id("dependencies")
+	id("common-plugins")
 	id("remote-docker")
 	idea
 }
@@ -34,32 +34,7 @@ dependencies {
 kotlin {
 
 	js {
-		browser {
-			testTask {
-				testLogging {
-					showExceptions = true
-					exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-					showCauses = true
-					showStackTraces = true
-				}
-			}
-		}
-		compilations.all {
-			tasks.getByName<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>(compileKotlinTaskName)
-				.kotlinOptions {
-					sourceMap = true
-					sourceMapEmbedSources = "always"
-					suppressWarnings = false
-					verbose = true
-					metaInfo = true
-					main = "call"
-				}
-			kotlinOptions {
-				languageVersion = "1.4"
-				apiVersion = "1.4"
-				freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
-			}
-		}
+		commonConfigurations()
 	}
 
 	sourceSets.all {

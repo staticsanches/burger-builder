@@ -1,6 +1,6 @@
 plugins {
 	id("close-ssh")
-	id("check-kotlin-version")
+	id("check-plugins-versions")
 	idea
 }
 

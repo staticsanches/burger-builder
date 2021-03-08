@@ -2,11 +2,8 @@ plugins {
 	java
 	application
 	kotlin("jvm")
-	id("kotlin-kapt")
-	kotlin("plugin.serialization")
 	id("com.github.johnrengelman.shadow")
-	id("net.saliman.properties")
-	id("dependencies")
+	id("common-plugins")
 	id("remote-docker")
 	id("local-environment")
 	idea
@@ -28,8 +25,8 @@ kotlin {
 	target {
 
 		attributes {
-			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
 			attribute(androidAttribute, false)
+			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
 		}
 
 		compilations.all {
@@ -37,7 +34,6 @@ kotlin {
 				useIR = true
 				jvmTarget = "1.8"
 				freeCompilerArgs = freeCompilerArgs + listOf(
-					"-XXLanguage:+InlineClasses",
 					"-Xopt-in=kotlin.RequiresOptIn",
 					"-Xopt-in=kotlin.time.ExperimentalTime",
 					"-Xopt-in=io.ktor.util.KtorExperimentalAPI",
@@ -66,10 +62,8 @@ localEnvironment {
 	}
 }
 
-application {
-	@Suppress("DEPRECATION") // needed because of shadow jar
-	mainClassName = "io.ktor.server.netty.EngineMain"
-}
+// needed for shadow jar
+setProperty("mainClassName", "io.ktor.server.netty.EngineMain")
 
 tasks {
 
