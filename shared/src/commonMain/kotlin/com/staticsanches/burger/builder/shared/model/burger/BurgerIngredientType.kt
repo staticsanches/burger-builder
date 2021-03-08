@@ -11,6 +11,8 @@ enum class BurgerIngredientType(val label: String, private val configurable: Boo
 	MEAT("Meat"),
 	BOTTOM_BUN("Bottom Bun", false);
 
+	override fun toString(): String = label
+
 	companion object {
 
 		val configurableValues = values()
