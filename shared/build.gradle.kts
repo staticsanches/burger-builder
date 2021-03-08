@@ -161,8 +161,8 @@ kotlin {
 			dependencies {
 				implementation(kotlin("test-junit5"))
 
-				implementation("org.junit.jupiter:junit-jupiter-api:${Versions.junit}")
-				runtimeOnly("org.junit.jupiter:junit-jupiter-engine:${Versions.junit}")
+				implementation(Dependencies.junit.jupiter.api)
+				runtimeOnly(Dependencies.junit.jupiter.engine)
 			}
 		}
 
@@ -177,8 +177,8 @@ kotlin {
 			dependencies {
 				implementation(kotlin("test-junit5"))
 
-				implementation("org.junit.jupiter:junit-jupiter-api:${Versions.junit}")
-				runtimeOnly("org.junit.jupiter:junit-jupiter-engine:${Versions.junit}")
+				implementation(Dependencies.junit.jupiter.api)
+				runtimeOnly(Dependencies.junit.jupiter.engine)
 			}
 		}
 

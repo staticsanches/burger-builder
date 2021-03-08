@@ -6,6 +6,7 @@
 object Dependencies {
 
 	val general = General
+	val junit = Junit
 	val kotlin = Kotlin
 	val ktor = Ktor
 
@@ -67,6 +68,7 @@ object Dependencies {
 	object General {
 
 		val database = Database
+		const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
 		val terminal = Terminal
 
 		object Database {
@@ -81,6 +83,19 @@ object Dependencies {
 
 			const val progressbar = "me.tongfei:progressbar:${Versions.progressbar}"
 			const val sshj = "com.hierynomus:sshj:${Versions.sshj}"
+
+		}
+
+	}
+
+	object Junit {
+
+		val jupiter = Jupiter
+
+		object Jupiter : DependencyGroupWithVersion("org.junit.jupiter", "junit-jupiter", Versions.junit) {
+
+			val api by dependency()
+			val engine by dependency()
 
 		}
 

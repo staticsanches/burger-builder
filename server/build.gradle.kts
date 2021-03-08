@@ -20,7 +20,7 @@ dependencies {
 	implementation(Dependencies.ktor.serialization)
 	implementation(Dependencies.ktor.server)
 	implementation(Dependencies.ktor.serverNetty)
-	implementation("ch.qos.logback:logback-classic:${Versions.logback}")
+	implementation(Dependencies.general.logback)
 }
 
 kotlin {
@@ -34,7 +34,7 @@ kotlin {
 
 		compilations.all {
 			kotlinOptions {
-				//useIR = true
+				useIR = true
 				jvmTarget = "1.8"
 				freeCompilerArgs = freeCompilerArgs + listOf(
 					"-XXLanguage:+InlineClasses",

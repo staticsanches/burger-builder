@@ -51,14 +51,14 @@ kotlin {
 
 	target {
 		attributes {
+			attribute(androidAttribute, true)
 			attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
 			attribute(KotlinPlatformType.attribute, KotlinPlatformType.androidJvm)
 		}
 		compilations.all {
-			tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>(compileKotlinTaskName)
-				.kotlinOptions {
-					jvmTarget = "1.8"
-				}
+			kotlinOptions {
+				jvmTarget = "1.8"
+			}
 			tasks.withType<Test> {
 				useJUnitPlatform()
 			}
@@ -77,19 +77,17 @@ kotlin {
 }
 
 dependencies {
+	implementation(kotlin("stdlib"))
+
 	implementation(project(":shared"))
 	implementation(project(":client:commons"))
 
 	implementation(Dependencies.kotlin.x.serializationJson)
 
-	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.31")
 	implementation("androidx.core:core-ktx:1.3.2")
 	implementation("androidx.appcompat:appcompat:1.2.0")
 	implementation("com.google.android.material:material:1.3.0")
 	implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-	testImplementation("junit:junit:4.13.2")
-	androidTestImplementation("androidx.test.ext:junit:1.1.2")
-	androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 
 	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 }

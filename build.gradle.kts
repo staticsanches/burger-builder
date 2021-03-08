@@ -1,5 +1,6 @@
 plugins {
 	id("close-ssh")
+	id("check-kotlin-version")
 	idea
 }
 
@@ -13,7 +14,6 @@ buildscript {
 	}
 
 	val kotlinVersion = "1.4.30"
-
 	dependencies {
 		classpath("com.android.tools.build:gradle:4.1.2")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")

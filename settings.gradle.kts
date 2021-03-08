@@ -13,4 +13,9 @@ includeBuild("plugins")
 
 include(":shared")
 include(":server")
-include(":client", ":client:commons", ":client:android", ":client:react")
+include(
+	":client",
+	":client:commons",
+	":client:android",
+	":client:react"
+)
